@@ -8,10 +8,15 @@ from wtforms.validators import DataRequired
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import requests
+from dotenv import load_dotenv
 
-MAILGUN_DOMAIN = "sandbox27046079d7f240af8c5b0297dd4626f9.mailgun.org"
-MAILGUN_API_KEY = "777a617d-eaca8230"
-MAILGUN_RECIPIENTS = "flaskaulasweb@zohomail.com, ferreira.mariana@aluno.ifsp.edu.br"
+# Load environment variables
+load_dotenv()
+
+# Get Mailgun credentials from environment variables
+MAILGUN_DOMAIN = os.getenv('MAILGUN_DOMAIN')
+MAILGUN_API_KEY = os.getenv('MAILGUN_API_KEY')
+MAILGUN_RECIPIENTS = os.getenv('MAILGUN_RECIPIENTS')
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -94,4 +99,4 @@ def index():
             db.session.commit()
             session['known'] = False
             flash('You were successfully registered.')
-            prontuario = "PT3019497"  #
+            prontuario = "PT123456"
