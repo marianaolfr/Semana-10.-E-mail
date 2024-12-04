@@ -10,10 +10,8 @@ from flask_migrate import Migrate
 import requests
 from dotenv import load_dotenv
 
-# Load environment variables
 load_dotenv()
 
-# Get Mailgun credentials from environment variables
 MAILGUN_DOMAIN = os.getenv('MAILGUN_DOMAIN')
 MAILGUN_API_KEY = os.getenv('MAILGUN_API_KEY')
 MAILGUN_RECIPIENTS = os.getenv('MAILGUN_RECIPIENTS')
@@ -99,4 +97,4 @@ def index():
             db.session.commit()
             session['known'] = False
             flash('You were successfully registered.')
-            prontuario = "PT123456"
+            send_email(form.name.data, "PT123456")
